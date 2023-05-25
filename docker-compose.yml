@@ -1,0 +1,33 @@
+version: "3"
+services:
+  backend:
+    build: ./backend
+    container_name: 'mongo_api_backend'
+    command: sh -c 'npm install; npm run dev'
+    ports:
+      - '4000:4000'
+    volumes:
+      - /home/tomasbidegain/Tomas/Facultad/4to AÑO/bbdd-nsql/TP4/backend:/backend
+    depends_on:
+      - "mongo-db"
+
+  mongo-db:
+    container_name: 'dbmongo'
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  frontend:
+    build: ./frontend
+    container_name: 'mongo_api_frontend'
+    image: node:16.20.0-alpine3.16
+    command: sh -c 'npm install; npm run dev'
+    ports:
+      - '3000:3000'
+    volumes:
+      - /home/tomasbidegain/Tomas/Facultad/4to AÑO/bbdd-nsql/TP4/frontend:/frontend
+    depends_on:
+      - "backend"
+    # working_dir: /home/tomasbidegain/Facultad/4to AÑO/bbdd-nsql/TP2/TP-redis/frontend
+    stdin_open: true
+    tty: true
