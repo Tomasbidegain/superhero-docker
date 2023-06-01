@@ -1,3 +1,4 @@
+"use client"
 import ButtonDeleteSuperHero from "@/components/ButtonDeleteSuperHero";
 import ButtonUpdate from "@/components/ButtonUpdate";
 import Carousel from "@/components/Carousel";
